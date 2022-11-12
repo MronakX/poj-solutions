@@ -1,0 +1,102 @@
+
+B(int a, int b, int c):A(a,b)
+{
+    cc = c;
+}
+
+///////////
+
+static int n;
+...
+int (A::n) = 0;
+
+///////////
+
+template<class T1>
+class a
+{
+    public:
+    static int count;
+}
+template<> int (A<double> :: count) = 0
+template<> int (A<int> :: count) = 0
+
+///////////
+
+class A
+{
+    public:
+    int *p;
+    A(int &pp)
+    {
+        p = &pp;
+    }
+    若想更改pp，则,注意*
+    *p += 1;
+};
+
+//////////
+
+for_each(vec.begin(), vec.end(), op())
+
+则class op
+{
+    void operator()(int a)
+    {
+        op(*a) 注意加*，代表a的值，而非地址
+    }
+}
+
+///////////
+stl容器定义格式：
+1.vector<int> A
+2.multimap<double, int, greater<double>> a
+3.typedef multimap<double, int, greater<double>> MMID
+    MMID m;
+4. 在外面定义类，用继承
+    template<class key, class value, class Pred = greater<int>>
+    class mymap:public multimap<key, value, Pred>     (模板类继承，不用写class)
+    {
+        public:
+        typename multimap<key, value, Pred>::iterator it;
+        it = multimap<key, value, Pred>::begin();
+    }
+
+//////////
+迭代器定义：
+1. vector<int> :: iterator it;
+2. typename vector<int>::iterator IT
+    IT it
+3. 
+
+/////////
+继承
+1. String 继承
+include <cstring>
+class MyString:public string
+{
+public:
+	public:
+	MyString():string() {};
+	MyString( const char * s):string(s){};
+	MyString( const string & s ): string(s){};
+	MyString operator() ( int s, int l)
+	{	
+		return this->substr(s,l);
+	};
+};
+
+
+//////////
+c++11
+1.lambda表达式
+
+auto ff = [=x/&y(外部的真实变量)](形参)
+{
+    return x*y;
+};（注意结尾的分号）这被视为定义了一个值，即ff，而非函数
+
+cout << [](double a, double b){return a+b}(1.2, 2.5) << endl;
+//3.7
+//0. auto ff = 1.变量[] 2.形参() 3.主体{return }        4.实参() 或 分号;
+上述可视为ff = [](double a, double b){return a+b}，然后调用ff(1.2, 2.5)

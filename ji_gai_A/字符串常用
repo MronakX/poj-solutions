@@ -1,0 +1,47 @@
+
+cin.getline(char*, int, '\n')
+
+cin.getline(str, 长度，停止符)
+
+while(cin.getline(sentence,200))
+不给定数量
+
+exit(1) 结束程序
+
+bool cmp(act a, act b)
+        {
+            if(a.end != b.end)
+            {
+                return a.end < b.end;
+            }
+            return a.start < b.start;
+        }
+
+        用于sort(array, array+n, cmp)
+
+
+调用函数 f(s+1,n)/f(++s,n) 不能写成s++，先调用，再++
+
+int main()//new & delete = malloc & free
+{
+    int arraysize, *array;
+    cout<< "how many elements ? ";
+    cin >> arraysize;
+    array = new int[arraysize]; //相当于有array[arraysize]一个数组;
+    for (int i = 0; i < arraysize; i++)
+    cin >> array[i];
+    for (int i =; i < arraysize; i++)
+    cout << array[i] ; //作为指针array是可以改变的，但是
+    delete[]array; //如果首地址变化了，回收命令就会出错。
+    return 0;
+}
+
+if ((array = new int[arraysize])== NULL);
+{
+    cout<< "error for allocating memory. " << endl;
+    exit(1);
+}
+//如果申请内存出错，new操作返回一个NULL(即0)，用上述条件语句，可以让程序中止
+
+不知道有多少测试用例，可用以下方法，没有数据则停止
+ while(cin.getline(sentence,200))
